@@ -2,8 +2,7 @@ from flask import render_template, request, redirect, Flask
 from sqlite3 import connect
 from random import choice, randint
 from os import chdir, remove
-import os, sys
-print(os.getcwd())
+import os
 chdir(os.getcwd())
 app=Flask(__name__)
 db=connect("url.db", check_same_thread=False)
