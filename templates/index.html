@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="shortcut icon" type="image/x-icon" href="/static/logo_not_clean.png"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>MURL</title>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="murl_sign" class="acc">
+                <b>MURL</b>
+            </div>
+            <div class="under_murl">
+                <b>link shortener</b>
+            </div>
+            <a href="http://{{ip_adress}}/account"><img src="/static/orange_webpict17_1484337097.png" alt="smth"></img></a>
+        </div>
+        <div class="main">
+            <!--<form action="m=none" method="post">
+                <input type="text" id="unic" name="unin" placeholder="Enter your URL here" class="inp_ref">
+                <input type="submit" value="Get shortened link" class="btn1">
+            </form>
+            <form action="{{ url_for('get_qr_code') }}" method="POST">
+                <input type="text" id="inp_ref2" name="inp_ref2" placeholder="Enter your URL here" class="inp_ref2">
+                <input type="submit" value="Get QR" class="btn3">
+            </form>-->
+            <div class="ultimate_tool">This ultimate tool will make your life easier!!!</div>
+            <a href="http://{{ip_adress}}/qr_link_enter" class="menu_link_qr"><div class="link_qr">QR code</div></a>
+            <a href="http://{{ip_adress}}/short_link_enter" class="menu_link_short"><div class="link_short">Shortened Link</div></a>
+        </div>
+    </div>
+</body>
+</html>

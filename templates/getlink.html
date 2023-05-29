@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="shortcut icon" type="image/x-icon" href="/static/logo_not_clean.png"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>MURL</title>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="murl_sign">
+                <b>MURL</b>
+            </div>
+            <div class="under_murl"><b>link shortener</b></div>
+            <a href="https://www.w3schools.com/tags/att_script_src.asp"><img class="img1" src="/static/orange_webpict17_1484337097.png" alt=""></a>
+        </div>
+        <div class="main">
+            <div class="inp">
+                <script type="text/javascript" >
+                    function Copy(containerid) {
+                            let textarea = document.createElement('textarea');
+                            textarea.id = 'temp';
+                            textarea.style.height = 0;
+                            document.body.appendChild(textarea);
+                            textarea.value = document.getElementById(containerid).innerText;
+                            console.log(textarea.value)
+                            let selector = document.querySelector('#temp');
+                            selector.select();
+                            document.execCommand('copy');
+                            document.body.removeChild(textarea);
+                            var myText = 'Copied!';
+                            document.getElementById('outref_text').innerHTML = myText;
+                            setTimeout(() => {
+                                var myText2 = '{{message}}';
+                                document.getElementById('outref_text').innerHTML = myText2;
+                            }, 1000);
+                    }
+                </script>
+                <button onclick="Copy('outref_text')" type="submit" class="copy_btn"><i class="fa" style="font-size:24px; z-index: -100;">&#xf0c5;</i></button>
+            </div>
+            <div class="out_ref"><div class="outref_text" id="outref_text">{{message}}</div></div>
+        </div>
+        <a href="http://{{ip_adress}}/main/" class="btn2">Create new link</a>
+    </div>
+</body>
+</html>

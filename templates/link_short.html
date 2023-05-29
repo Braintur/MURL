@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="shortcut icon" type="image/x-icon" href="/static/logo_not_clean.png"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>MURL</title>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="murl_sign">
+                <b>MURL</b>
+            </div>
+            <div class="under_murl"><b>link shortener</b></div>
+            <a href="https://www.w3schools.com/tags/att_script_src.asp"><img src="/static/orange_webpict17_1484337097.png" alt=""></a>
+        </div>
+        <div class="main">
+            <form action="{{ url_for('get_from_main_page') }}" method="post">
+                <input type="text" id="inp_ref" name="inp_ref" placeholder="Enter your URL here" class="inp_ref">
+                <input type="submit" value="Get shortened link" class="btn1">
+            </form>
+            <a href="http://{{ip_adress}}/" class="btn4">Go back</a>
+        </div>
+    </div>
+</body>
+</html>
