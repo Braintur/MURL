@@ -28,7 +28,7 @@ def delete_qrs():
 @app.route("/")
 def red():
     delete_qrs()
-    return redirect(f"http://{ip_adress}/main/")
+    return redirect(f"http://{ip_adress}/main/", ip_adress=ip_adress)
 
 name=''
 
@@ -40,7 +40,7 @@ def main_page():
         remove(name)
     except:
         pass
-    return render_template("index.html")
+    return render_template("index.html", ip_adress=ip_adress)
 
 @app.route("/get_link/", methods=['POST'])
 def get_from_main_page():
