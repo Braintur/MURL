@@ -3,7 +3,7 @@ from sqlite3 import connect
 from random import choice, randint
 from os import chdir, remove
 import os
-chdir(os.getcwd())
+
 app=Flask(__name__)
 db=connect("url.db", check_same_thread=False)
 sql=db.cursor()
@@ -64,6 +64,7 @@ def get_qr_code():
     delete_qrs()
     import qrcode
     from os import chdir
+    chdir(os.getcwd()+"\\static\\")
     global name
     if request.method=="POST":
         inp_ref = request.form.get("inp_ref2")
