@@ -28,7 +28,7 @@ def delete_qrs():
 @app.route("/")
 def red():
     delete_qrs()
-    return redirect(f"http://{ip_adress}/main/", ip_adress=ip_adress)
+    return redirect(f"http://{ip_adress}/main/")
 
 name=''
 
