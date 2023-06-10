@@ -16,7 +16,7 @@ sql.execute("""CREATE TABLE IF NOT EXISTS urls(
 
 db.commit()
 
-ip_adress_pre = "127.0.0.1"
+ip_adress_pre = "192.168.1.186"
 ip_adress = ip_adress_pre + ":5000"
 
 def delete_qrs():
@@ -64,7 +64,7 @@ def get_qr_code():
     delete_qrs()
     import qrcode
     from os import chdir
-    chdir(os.getcwd()+"\\static\\")
+    chdir("C:\\Users\\Misha\\Documents\\python\\EIS\\murl"+"\\static\\")
     global name
     if request.method=="POST":
         inp_ref = request.form.get("inp_ref2")
