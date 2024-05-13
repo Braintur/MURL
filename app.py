@@ -1,13 +1,14 @@
 from flask import render_template, request, redirect, Flask
 from sqlite3 import connect
 from random import choice, randint
-from os import chdir, remove
-import os
+from os import chdir, remove, listdir
+import qrcode
 
 app=Flask(__name__)
 db=connect("url.db", check_same_thread=False)
 sql=db.cursor()
 alphabet = 'QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm1234567890&'
+name=''
 
 sql.execute("""CREATE TABLE IF NOT EXISTS urls(
                 url TEXT NOT NULL,
@@ -16,15 +17,15 @@ sql.execute("""CREATE TABLE IF NOT EXISTS urls(
 
 db.commit()
 
-ip_adress_pre = "0.0.0.0"
+ip_adress_pre = "127.0.0.1"
 ip_adress = ip_adress_pre + ":5050"
 
 def delete_qrs():
-    entries = os.listdir()
+    entries = listdir()
     for entry in entries:
         if 'img' in entry:
             name=entry
-            os.remove(name)
+            remove(name)
             
 @app.route("/")
 def red():
@@ -36,9 +37,6 @@ def red():
         pass
     return render_template("index.html", ip_adress=ip_adress)
 
-name=''
-    
-
 @app.route("/get_link/", methods=['POST'])
 def get_from_main_page():
     delete_qrs()
@@ -48,25 +46,23 @@ def get_from_main_page():
         inp_ref = request.form.get("inp_ref")
         if "http" in inp_ref:
             out_ref=''
-            for i in range(5):
+            for _ in range(5):
                 out_ref = out_ref+ choice(alphabet)
             sql.execute("""INSERT INTO urls (url, url_id) VALUES (?, ?)""", (inp_ref, out_ref))
             db.commit()
-            out_ref = f"http://{ip_adress}/" + out_ref
+            out_ref = f"http://{ip_adress}/link={out_ref}"
             message = out_ref
     return render_template("getlink.html", message=message, ip_adress=ip_adress)
 
 @app.route("/qr/", methods=['POST'])
 def get_qr_code():
     delete_qrs()
-    import qrcode
-    from os import chdir
-    chdir("C:\\Users\\Misha\\Documents\\python\\EIS\\murl"+"\\static\\")
+    chdir("C:\\Users\\Misha\\OneDrive\\Документы\\python\\EIS\\murl\\static")
     global name
     if request.method=="POST":
         inp_ref = request.form.get("inp_ref2")
         name=''
-        for i in range(10):
+        for _ in range(10):
             name = name+ str(randint(0,9))
         name = "img"+name+".png"
         img = qrcode.make(inp_ref)
@@ -74,7 +70,7 @@ def get_qr_code():
         img.save(name)
     return render_template("getqr.html", img=f"/static/{name}", ip_adress=ip_adress)
 
-@app.route("/<link_id>/")
+@app.route("/link=<link_id>/")
 def redir(link_id):
     delete_qrs()
     if link_id!=None:
