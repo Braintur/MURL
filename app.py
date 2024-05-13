@@ -16,8 +16,8 @@ sql.execute("""CREATE TABLE IF NOT EXISTS urls(
 
 db.commit()
 
-ip_adress_pre = "192.168.1.186"
-ip_adress = ip_adress_pre + ":5000"
+ip_adress_pre = "0.0.0.0"
+ip_adress = ip_adress_pre + ":5050"
 
 def delete_qrs():
     entries = os.listdir()
@@ -25,15 +25,9 @@ def delete_qrs():
         if 'img' in entry:
             name=entry
             os.remove(name)
+            
 @app.route("/")
 def red():
-    delete_qrs()
-    return redirect(f"http://{ip_adress}/main/")
-
-name=''
-
-@app.route("/main/")
-def main_page():
     delete_qrs()
     global name
     try:
@@ -41,6 +35,9 @@ def main_page():
     except:
         pass
     return render_template("index.html", ip_adress=ip_adress)
+
+name=''
+    
 
 @app.route("/get_link/", methods=['POST'])
 def get_from_main_page():
@@ -102,4 +99,4 @@ def acc():
     return render_template("account.html", ip_adress=ip_adress)
 
 if __name__ == "__main__":
-    app.run(host=ip_adress_pre, debug=False)
+    app.run(host=ip_adress_pre, port=5050, debug=False)
